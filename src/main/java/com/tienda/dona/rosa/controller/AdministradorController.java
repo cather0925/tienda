@@ -3,7 +3,7 @@ package com.tienda.dona.rosa.controller;
 import java.util.List;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +19,11 @@ import com.tienda.dona.rosa.service.ProductoService;
 @RequestMapping("/administrador")
 public class AdministradorController {
 	
-	
-	@Autowired
-	private ProductoService productoService;
+	 private final ProductoService productoService;
+
+	    public AdministradorController(ProductoService productoService) {
+	        this.productoService = productoService;
+	    }
 	
 	@GetMapping("")
 	public String home(Model model) {
@@ -32,7 +34,20 @@ public class AdministradorController {
 		return "administrador/home";
 	}
 	
-	
-		
+	@GetMapping("/producto-cercano-acabarse")
+    public String obtenerProductoCercanoAcabarse(Model model) {
+        Producto producto = productoService.obtenerProductoCercaDeAcabarse();
+        model.addAttribute("productoCercano", producto);
+        return "productos/producto-cercano-acabarse";
+    }
+
+    @GetMapping("/costototal_inventario")
+    public String costoTotalInventario(Model model) {
+        Double costoTotal = productoService.calcularCostoTotalInventario();
+        model.addAttribute("costoTotal", costoTotal);
+        return "administrador/costo-total-inventario";
+    }
 }
+		
+
 

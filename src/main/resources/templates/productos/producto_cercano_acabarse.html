@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto Cercano a Acabarse</title>
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <div th:include="administrador/template_admin.html::header"></div>
+
+    <!-- Contenido -->
+    <div class="container">
+        <h1>Producto Más Cercano a Acabarse</h1>
+        
+        <!-- Muestra el enlace -->
+        <a th:href="@{/productos/acabarse}" class="btn btn-info">Ver Producto Cercano a Acabarse</a>
+        
+        <!-- Condición para mostrar el producto cercano a acabarse -->
+        <div class="mt-4" th:if="${productoCercano != null}">
+            <div class="card">
+                <div class="card-body">
+                    <h2 th:text="'Nombre del Producto: ' + ${productoCercano.nombre}">[Nombre del Producto]</h2>
+                    <p th:text="'Precio: $' + ${productoCercano.precio}">[Precio]</p>
+                    <p th:text="'Cantidad Actual: ' + ${productoCercano.cantidad}">[Cantidad Actual]</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mensaje si no hay productos cercanos a acabarse -->
+        <div class="alert alert-warning mt-4" th:if="${productoCercano == null}">
+            <p>No hay productos cercanos a acabarse.</p>
+        </div>
+
+        <!-- Botón para volver -->
+        <a th:href="@{/productos}" class="btn btn-primary mt-3">Volver a Productos</a>
+    </div>
+
+    <!-- Footer -->
+    <div th:include="administrador/template_admin.html::footer"></div>
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

@@ -17,9 +17,11 @@
 						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> ADMIN </a>
 						
-						<div class="dropdown-menu"
-							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" th:href="@{/productos}">Productos</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<!-- Enlaces corregidos y únicos -->
+							<a class="dropdown-item" th:href="@{/productos}">Gestión de Productos</a>
+							<a class="dropdown-item" th:href="@{/inventario}">Inventario de Productos</a>
+							<a class="dropdown-item" th:href="@{/productos/acabarse}">Cálculos de Productos</a>
 						</div></li>
 				</ul>
 			</div>
@@ -27,8 +29,6 @@
 	</nav>
 
 </div>
-
-
 
 <!-- Footer -->
 <div th:fragment="footer">

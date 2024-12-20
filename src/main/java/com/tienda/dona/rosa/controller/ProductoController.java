@@ -1,5 +1,7 @@
 package com.tienda.dona.rosa.controller;
 
+
+
 import java.util.Optional;
 
 import org.slf4j.*;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tienda.dona.rosa.model.Producto;
 import com.tienda.dona.rosa.model.Usuario;
@@ -31,6 +34,11 @@ public class ProductoController {
 		return "productos/show";
 		
 	}
+	 @GetMapping("/form")
+	    public String mostrarFormulario(Model model) {
+	        model.addAttribute("producto", new Producto());
+	        return "productos/form_producto";
+	    }
 	
 	@GetMapping("/create")
 	public String create() {
@@ -70,5 +78,30 @@ public class ProductoController {
 		productoService.delete(id);
 		return "redirect:/productos";
 	}
+	
+	 @GetMapping("/productohome")
+	    public String mostrarProductoHome(Model model) {
+	        Producto producto = new Producto();
+	        producto.setNombre("producto");
+	        model.addAttribute("producto", producto);
+	        return "administrador/productohome";
+	    }
+	 
 
+	 
+	 @GetMapping("/acabarse")
+	    public String mostrarProductoCercanoAcabarse(Model model) {
+	        Producto productoCercano = productoService.obtenerProductoCercaDeAcabarse();
+	        model.addAttribute("productoCercano", productoCercano);
+	        return "productos/producto_cercano_acabarse";
+	    }
+	
+	 @PostMapping("/actualizar")
+	    public String actualizarCantidad(@RequestParam Long id, @RequestParam int cantidadActual) {
+	        productoService.actualizarProducto(id, cantidadActual);
+	        return "redirect:/productos";
+	    }
+	
 }
+
+
