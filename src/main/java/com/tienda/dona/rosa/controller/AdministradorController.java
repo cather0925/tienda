@@ -48,6 +48,5 @@ public class AdministradorController {
         return "administrador/costo-total-inventario";
     }
 }
-		
 
 

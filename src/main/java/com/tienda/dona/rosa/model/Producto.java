@@ -104,7 +104,7 @@ public Producto(Integer id, String nombre, double precio, int cantidad, Usuario 
 				+ "]";
 	}
 
-	public void setCantidadActual(int cantidadActual2) {
+	public void setCantidadActual(int cantidadActua12) {
 		
 		
 	}
@@ -113,6 +113,7 @@ public Producto(Integer id, String nombre, double precio, int cantidad, Usuario 
 
 	
 }
+
 
 	
 	
